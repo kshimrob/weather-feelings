@@ -1,4 +1,5 @@
 //need to fix coordinates
+var weatherTemp;
 
 function findUserLocation() {
   //grab user coordinates
@@ -15,29 +16,6 @@ function findUserLocation() {
   });
 }
 
-// function findUserLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-//   } else {
-//     alert("You're browser does not support geolocation.");
-//   }
-// }
-
-// function successCallback(position) {
-//   var lat = position.coords.latitude;
-//   var lon = position.coords.longitude;
-//   getWeatherData(lat, lon);
-// }
-
-// function errorCallback(error) {
-//   var errors = { 
-//     1: 'Permission denied',
-//     2: 'Position unavailable',
-//     3: 'Request timeout'
-//   };
-//   alert("Error: " + errors[error.code]);
-// }
-
 function getWeatherData(lat, lon, units = "metric") {
   var API_KEY = "ab523a417ca668db54af9e181900f132"
   var apiUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=" + units + "&appid=" + API_KEY;
@@ -46,54 +24,51 @@ function getWeatherData(lat, lon, units = "metric") {
     if (data) { 
     var city = data.name;
     var temp = data.main.temp;
-    var weather = data.weather[0].description;
+    weatherTemp = data.main.temp;
     var icon = data.weather[0].icon;
-    updatePageData(city, temp, weather, icon);
+    updatePageData(city, temp, icon);
     } else {
       alert("There was an issue getting your weather, please try again later.")
     }
   });
 }
 
-function feelingsUpdate (weather) {
-  switch(weather) {
-    case "clear sky":
+function feelingsUpdate (icon) {
+  switch(icon) {
+    case "01d":
+    case "01n":
       return "jubilant.";
       break;
-    case "few clouds":
+    case "02d":
+    case "02n":
       return "joyful.";
       break;
-    case "scattered clouds":
+    case "03d":
+    case "03n":
       return "calm.";
       break;
-    case "overcast clouds":
+    case "04d":
+    case "04n":
       return "pensive.";
       break;
-    case "broken clouds":
-      return "pensive.";
-      break;
-    case "shower rain":
+    case "09d":
+    case "09n":
       return "antsy.";
       break;
-    case "light intensity drizzle":
-      return "antsy.";
-      break;
-    case "light rain":
-      return "antsy.";
-      break;
-    case "rain":
+    case "10d":
+    case "10n":
       return "sad.";
       break;
-    case "moderate rain":
-      return "sad.";
-      break;
-    case "thunderstorm":
+    case "11d":
+    case "11n":
       return "angry.";
       break;
-    case "snow":
+    case "13d":
+    case "13n":
       return "giddy.";
       break;
-    case "mist":
+    case "50d":
+    case "50n":
       return "introspective."
       break;
     default:
@@ -101,45 +76,42 @@ function feelingsUpdate (weather) {
   }
 }
 
-function feelingsBgColor (weather) {
-  switch(weather) {
-    case "clear sky":
+function feelingsBgColor (icon) {
+  switch(icon) {
+    case "01d":
+    case "01n":
       return "Yellow";
       break;
-    case "few clouds":
+    case "02d":
+    case "02n":
       return "Chartreuse";
       break;
-    case "scattered clouds":
+    case "03d":
+    case "03n":
       return "LightSkyBlue";
       break;
-    case "overcast clouds":
+    case "04d":
+    case "04n":
       return "Thistle";
       break;
-    case "broken clouds":
-      return "Thistle";
-      break;
-    case "shower rain":
+    case "09d":
+    case "09n":
       return "BlueViolet";
       break;
-    case "light intensity drizzle":
-      return "BlueViolet";
-      break;
-    case "light rain":
-      return "BlueViolet";
-      break;
-    case "rain":
+    case "10d":
+    case "10n":
       return "DeepSkyBlue";
       break;
-    case "moderate rain":
-      return "DeepSkyBlue";
-      break;
-    case "thunderstorm":
+    case "11d":
+    case "11n":
       return "RebeccaPurple";
       break;
-    case "snow":
+    case "13d":
+    case "13n":
       return "LightSteelBlue";
       break;
-    case "mist":
+    case "50d":
+    case "50n":
       return "PeachPuff";
       break;
     default:
@@ -149,43 +121,40 @@ function feelingsBgColor (weather) {
 
 function weatherActivity (weather) {
   switch(weather) {
-    case "clear sky":
+    case "01d":
+    case "01n":
       return "Time for a solo dance party.";
       break;
-    case "few clouds":
+    case "02d":
+    case "02n":
       return "Time for bird watching.";
       break;
-    case "scattered clouds":
+    case "03d":
+    case "03n":
       return "Time to read some philosophy.";
       break;
-    case "overcast clouds":
+    case "04d":
+    case "04n":
       return "Time to sip on some tea.";
       break;
-    case "broken clouds":
-      return "Time to sip on some tea.";
-      break;
-    case "shower rain":
+    case "09d":
+    case "09n":
       return "Time for singing in the rain.";
       break;
-    case "light intensity drizzle":
-      return "Time for singing in the rain.";
-      break;
-    case "light rain":
-      return "Time for singing in the rain.";
-      break;
-    case "rain":
+    case "10d":
+    case "10n":
       return "Time to listen to some mellow tunes.";
       break;
-    case "moderate rain":
-      return "Time to listen to some mellow tunes.";
-      break;
-    case "thunderstorm":
+    case "11d":
+    case "11n":
       return "Time to hit up that punching bag.";
       break;
-    case "snow":
+    case "13d":
+    case "13n":
       return "Time for some hot chocolate with a little something extra.";
       break;
-    case "mist":
+    case "50d":
+    case "50n":
       return "Time to journal.";
       break;
     default:
@@ -193,45 +162,42 @@ function weatherActivity (weather) {
   }
 }
 
-function descriptionUpdate (weather) {
-  switch(weather) {
-    case "clear sky":
+function descriptionUpdate (icon) {
+  switch(icon) {
+    case "01d":
+    case "01n":
       return "clear skies, yo.";
       break;
-    case "few clouds":
+    case "02d":
+    case "02n":
       return "only a sprinkle of clouds and fairy dust.";
       break;
-    case "scattered clouds":
+    case "03d":
+    case "03n":
       return "a few more clouds than the reg.";
       break;
-    case "overcast clouds":
+    case "04d":
+    case "04n":
       return "overcast, yo.";
       break;
-    case "broken clouds":
-      return "overcast, yo.";
-      break;
-    case "shower rain":
+    case "09d":
+    case "09n":
       return "some light showering outside your tub.";
       break;
-    case "light intensity drizzle":
-      return "some light showering outside your tub.";
-      break;
-    case "light rain":
-      return "some light showering outside your tub.";
-      break;
-    case "rain":
+    case "10d":
+    case "10n":
       return "solid rain. not actually solid, silly.";
       break;
-    case "moderate rain":
-      return "solid rain. not actually solid, silly.";
-      break;
-    case "thunderstorm":
+    case "11d":
+    case "11n":
       return "BOOMSHAKALAKA. 'nuff said."
       break;
-    case "snow":
+    case "13d":
+    case "13n":
       return "snow! do you want to build a snowman?"
       break;
-    case "mist":
+    case "50d":
+    case "50n":
       return "much mist. hard to see."
       break;
     default:
@@ -239,23 +205,41 @@ function descriptionUpdate (weather) {
   }
 }
 
-function iconUpdate(icon) {
-  switch(icon) {
-
-  }
+function updatePageData(city, temp, icon) {
+  console.log(icon);
+  $("#city").html(city);
+  $("#temp").html(temp.toFixed(2));
+  $("#icon").attr("src", icon + ".png");
+  $("#desc").html(descriptionUpdate(icon));
+  $("#feeling-desc").html(feelingsUpdate(icon));
+  $("#feeling-desc").css("background-color", feelingsBgColor(icon));
+  $("#weather-activity").html(weatherActivity(icon));
 }
 
-function updatePageData(city, temp, weather, icon) {
-  console.log(weather + icon);
-  $("#city").html(city);
-  $("#temp").html(temp);
-  $("#icon").attr("src", icon + ".png");
-  $("#desc").html(descriptionUpdate(weather));
-  $("#feeling-desc").html(feelingsUpdate(weather));
-  $("#feeling-desc").css("background-color", feelingsBgColor(weather));
-  $("#weather-activity").html(weatherActivity(weather));
+function changeUnits(temp) {
+  console.log($("#units").text());
+  if ($("#units").text() === "C") {
+    $("#temp").text((weatherTemp * 1.8 + 32).toFixed(2));
+    $("#units").text("F");
+  } else {
+    $("#temp").text(weatherTemp);
+    $("#units").text("C");
+  }
 }
 
 $(document).ready(function(){
   findUserLocation();
+
+  $('button').click(function() {
+    $('.toggle').toggleClass('selected unselected')
+    changeUnits(weatherTemp);
+  });
 });
+
+/* when button is clicked...
+
+1. changes class of the button to "selected"
+2. changes class of the other button to "unselected"
+3. IF the button that was clicked was class "Farenheit", 
+  then change the temperature from C -> F
+  (vice versa)*/

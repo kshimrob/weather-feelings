@@ -6,7 +6,7 @@ html {
 }
 
 main {
-  margin-top: 5%;
+  margin-top: 5rem;
   width: 100%;
 }
 
@@ -18,8 +18,8 @@ h1 {
 }
 
 #icon {
-  width: 50%;
-  margin-bottom: 5%;
+  max-width: 700px;
+  margin-bottom: 0.8rem;
 }
 
 #feeling-desc {
@@ -28,9 +28,57 @@ h1 {
 
 #weather-activity {
   font-size: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 main p:last-of-type {
-  margin-top: 1.2rem;
+  margin-top: 1rem;
 }
+
+.buttons {
+  margin-top: 2rem;
+}
+
+.buttons button:first-of-type {
+    margin-right: 1rem;
+}
+
+button {
+  padding: 10px 15px;
+  border: 0;
+  font-size: 100%;
+  font-family: 'Poppins', Verdana, sans-serif;
+  transition: background-color 0.2s ease-out;
+  background-color: rgba(192, 192, 192, 1);
+}
+
+button:hover {
+  background-color: rgba(192, 192, 192, 0.7);
+}
+
+.selected {
+  background-color: #99DFEE;
+  pointer-events: none;
+}
+
+@media (max-width: 740px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  #weather-activity {
+    font-size: 1.3rem;
+  }
+
+  #icon {
+    max-width: 90%;
+  }
+
+  main p:last-of-type {
+  margin-top: 0.3rem;
+}
+}
+
+
+
+
