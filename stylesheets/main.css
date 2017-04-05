@@ -82,6 +82,10 @@ footer {
     max-width: 90%;
   }
 
+  #forecast {
+    padding: 0 20px;
+  }
+
   main p:last-of-type {
   margin-top: 0.3rem;
 }
