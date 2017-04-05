@@ -194,7 +194,7 @@ function descriptionUpdate (icon) {
       break;
     case "13d":
     case "13n":
-      return "Snow! do you want to build a snowman?"
+      return "Snow! Do you want to build a snowman?"
       break;
     case "50d":
     case "50n":
