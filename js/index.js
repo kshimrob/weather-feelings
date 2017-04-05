@@ -166,27 +166,27 @@ function descriptionUpdate (icon) {
   switch(icon) {
     case "01d":
     case "01n":
-      return "clear skies, yo.";
+      return "Clear skies, yo.";
       break;
     case "02d":
     case "02n":
-      return "only a sprinkle of clouds and fairy dust.";
+      return "Only a sprinkle of clouds and fairy dust.";
       break;
     case "03d":
     case "03n":
-      return "a few more clouds than the reg.";
+      return "A few more clouds than the reg.";
       break;
     case "04d":
     case "04n":
-      return "overcast, yo.";
+      return "Overcast, yo.";
       break;
     case "09d":
     case "09n":
-      return "some light showering outside your tub.";
+      return "Some light showering outside your tub.";
       break;
     case "10d":
     case "10n":
-      return "solid rain. not actually solid, silly.";
+      return "Solid rain. not actually solid, silly.";
       break;
     case "11d":
     case "11n":
@@ -194,14 +194,14 @@ function descriptionUpdate (icon) {
       break;
     case "13d":
     case "13n":
-      return "snow! do you want to build a snowman?"
+      return "Snow! do you want to build a snowman?"
       break;
     case "50d":
     case "50n":
-      return "much mist. hard to see."
+      return "Much mist. Hard to see."
       break;
     default:
-      return "some type of sky ¯\\_(ツ)_/¯";
+      return "Some type of sky ¯\\_(ツ)_/¯";
   }
 }
 
@@ -209,7 +209,7 @@ function updatePageData(city, temp, icon) {
   console.log(icon);
   $("#city").html(city);
   $("#temp").html(temp.toFixed(2));
-  $("#icon").attr("src", icon + ".png");
+  $("#icon").attr("src", "assets/" + icon + ".png");
   $("#desc").html(descriptionUpdate(icon));
   $("#feeling-desc").html(feelingsUpdate(icon));
   $("#feeling-desc").css("background-color", feelingsBgColor(icon));
